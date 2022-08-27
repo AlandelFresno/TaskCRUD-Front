@@ -1,0 +1,33 @@
+.gridContainer {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  height: 80%;
+  padding-left: 2rem;
+  align-items: center;
+  button{
+    margin-top: 1rem;
+    width: 10rem;
+    text-transform: none;
+    background-color: var(--blue-ryb);
+  }
+  table {
+    border-collapse: collapse;
+    max-width: 80%;
+    margin: 2rem auto;
+    th,
+    td {
+      svg {
+        transform: scale(0.8);
+      }
+      border: 1px solid white;
+      border-radius: 5px;
+      padding: 8px;
+    }
+    td {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      height: 28px;
+    }
+  }
+}
