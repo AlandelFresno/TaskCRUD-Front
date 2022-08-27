@@ -23,7 +23,7 @@ const index = () => {
       <Typography variant="h4"> Log in</Typography>
       <FormComponent inputArray={inputsArray} />
       <Typography variant="subtitle1" className={styles.registro}>
-        Don't have an account? <Link href="/registro">Register</Link>
+        Don't have an account? <Link href="/register">Register</Link>
       </Typography>
     </div>
   );
