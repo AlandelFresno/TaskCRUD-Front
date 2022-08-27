@@ -14,13 +14,15 @@ const index = () => {
     { id: 6, title: 'Task6', description: 'task six' },
     { id: 7, title: 'Task7', description: 'task seven' },
     { id: 8, title: 'Task8', description: 'task eight' },
+    { id: 9, title: 'Task8', description: 'task eight' },
+    { id: 10, title: 'Task8', description: 'task eight' },
   ];
 
   return (
-    <>
+    <div className={styles.homeContainer}>
       <Navbar />
       <Table data={rows} columns={columns} />
-    </>
+    </div>
   );
 };
 
