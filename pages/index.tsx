@@ -15,7 +15,6 @@ const Home: NextPage = () => {
       <main>
         <HomeComponent />
       </main>
-
     </div>
   );
 };
