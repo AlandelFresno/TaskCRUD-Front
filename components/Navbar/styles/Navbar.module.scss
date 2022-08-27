@@ -41,7 +41,7 @@
       justify-content: flex-start;
       margin: 0;
       overflow: hidden;
-      padding: 50px 10px 0 5px ;
+      padding: 50px 10px 0 5px;
       position: absolute;
       transform-origin: 0% 0%;
       transform: translate(-100%, 0);
@@ -66,6 +66,7 @@
 
 @media (min-width: 426px) {
   .NavbarContainer {
+    padding-bottom: 50px;
     .menuToggle {
       input {
         cursor: default;
@@ -81,6 +82,7 @@
         display: none;
       }
       ul {
+        border-bottom-right-radius: 0;
         transform: translate(0, 0);
         background: var(--oxford-blue);
         flex-direction: row;
