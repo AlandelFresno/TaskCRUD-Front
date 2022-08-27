@@ -1,5 +1,5 @@
 .NavbarContainer {
-  height: 100%;
+  height: 5%;
   margin-bottom: 5px;
   padding-bottom: 10px;
   position: sticky;
@@ -8,9 +8,9 @@
   .menuToggle {
     display: block;
     height: 100%;
-    margin-left: 5px;
+    padding-top: 10px;
     position: relative;
-    top: 10px;
+    top: 0;
     z-index: 1;
     input {
       cursor: pointer;
@@ -30,19 +30,18 @@
     .menuIcon2 {
       height: 28px;
       width: 43px;
-      fill: white;
     }
     ul {
       align-items: flex-start;
-      background: #232323;
+      background: var(--rich-black-fogra-39);
       display: flex;
       flex-direction: column;
       height: 100vmax;
+      overflow: hidden;
       justify-content: flex-start;
-      margin: -100px 0 0 -50px;
-      padding-left: 50px;
-      padding-right: 25px;
-      padding-top: 175px;
+      margin: 0;
+      top: 0;
+      padding: 50px 5px 0 5px ;
       position: absolute;
       transform-origin: 0% 0%;
       transform: translate(-100%, 0);
@@ -55,19 +54,17 @@
         padding: 10px 0;
       }
       a:hover {
-        color: azure;
+        color: var(--blue-ryb);
       }
     }
     input:checked ~ ul {
       transform: none;
-      color: white;
     }
   }
 }
 
 @media (min-width: 426px) {
   .NavbarContainer {
-    padding-bottom: 3rem;
     .menuToggle {
       input {
         cursor: default;
@@ -83,9 +80,8 @@
         display: none;
       }
       ul {
-        color: white;
         transform: translate(0, 0);
-        background: #232323;
+        background: var(--rich-black-fogra-39);
         flex-direction: row;
         justify-content: flex-end;
         width: 100%;
@@ -93,7 +89,7 @@
         top: 0;
         right: 0;
         padding: 0;
-        padding-top: 100px;
+        padding-top: 5px;
         padding-right: 30px;
         position: fixed;
         a {
