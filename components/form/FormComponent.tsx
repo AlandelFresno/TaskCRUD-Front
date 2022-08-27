@@ -9,6 +9,18 @@ interface Props {
 
 const FormComponent: React.FC<Props> = ({ inputArray: quantity }) => {
   const validate = Yup.object({
+    registerUserName: Yup.string()
+      .required('Username is required')
+      .min(3, 'Username must be at least 3 characters'),
+    registerEmail: Yup.string()
+      .required('Email is required')
+      .email('Invalid email'),
+    registerPassword: Yup.string()
+      .required('Password is required')
+      .min(6, 'Password must be at least 6 characters'),
+    registerConfirmPassword: Yup.string()
+      .required('Confirm password is required')
+      .oneOf([Yup.ref('registerPassword'), null], "Passwords don't match"),
     loginEmail: Yup.string()
       .required('Email is required')
       .email('Invalid email'),
@@ -17,7 +29,9 @@ const FormComponent: React.FC<Props> = ({ inputArray: quantity }) => {
       .min(6, 'Password must be at least 6 characters'),
   });
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    console.log('click')
+  };
 
   return (
     <Formik
@@ -25,6 +39,10 @@ const FormComponent: React.FC<Props> = ({ inputArray: quantity }) => {
       initialValues={{
         loginEmail: '',
         loginPassword: '',
+        registerUserName: '',
+        registerEmail: '',
+        registerPassword: '',
+        registerConfirmPassword: '',
       }}
       validationSchema={validate}
       onSubmit={handleSubmit}

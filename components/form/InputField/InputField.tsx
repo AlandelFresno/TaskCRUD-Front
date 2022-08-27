@@ -10,14 +10,13 @@ interface Props {
 }
 
 const InputField: React.FC<Props> = ({label, name, type}) => {
-  
 
   return (
     <div>
       <input
         className={''}
         placeholder={label}
-        type={label}
+        type={type}
       />
       <ErrorMessage
         component="p"
