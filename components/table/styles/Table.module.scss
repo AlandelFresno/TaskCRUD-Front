@@ -3,9 +3,8 @@
   flex-direction: column;
   width: 80%;
   padding-left: 2rem;
-  align-items: center;
   button{
-    margin-top: 1rem;
+    margin: 1rem auto;
     width: 10rem;
     text-transform: none;
     background-color: var(--blue-ryb);
@@ -13,7 +12,7 @@
   table {
     border-collapse: collapse;
     max-width: 80%;
-    margin: 2rem auto;
+    margin: 1rem auto;
     th,
     td {
       svg {
@@ -27,6 +26,19 @@
       overflow: hidden;
       text-overflow: ellipsis;
       height: 28px;
+    }
+  }
+}
+@media (min-width: 426px) {
+  .gridContainer {
+    width: 100%;
+    padding: 0;
+    table{
+      width: 100%;
+    }
+    .actions{
+      display: flex;
+      justify-content: center;
     }
   }
 }

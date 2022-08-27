@@ -1,6 +1,7 @@
 import React from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import styles from '../styles/Table.module.scss';
 
 interface Props {
   title: string;
@@ -12,7 +13,7 @@ const TableRow: React.FC<Props> = ({ title, description }) => {
     <tr>
       <td> {title}</td>
       <td> {description}</td>
-      <td>
+      <td className={styles.actions}>
         <EditIcon />
         <DeleteIcon />
       </td>
