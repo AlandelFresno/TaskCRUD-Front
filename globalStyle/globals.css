@@ -17,6 +17,11 @@ body {
 
 #__next {
   height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--oxford-blue-2) 0%,
+    var(--ua-blue) 100%
+  );
 }
 a {
   color: inherit;
