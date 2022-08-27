@@ -21,7 +21,7 @@ const Navbar = () => {
           <MenuIcon className={styles.menuIcon1} />
         )}
         <ul>
-          <Link href="#">Home</Link>
+          <Link href="/home">Home</Link>
         </ul>
       </nav>
     </div>
