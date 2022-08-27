@@ -22,44 +22,45 @@
       width: 43px;
       z-index: 2;
     }
-    .menuIcon1{
+    .menuIcon1 {
       height: 28px;
       width: 43px;
       z-index: 1;
     }
-    .menuIcon2{
+    .menuIcon2 {
       height: 28px;
       width: 43px;
+      fill: white;
     }
     ul {
       align-items: flex-start;
-      background: grey;
+      background: #232323;
       display: flex;
       flex-direction: column;
-      height: 100%;
+      height: 100vmax;
       justify-content: flex-start;
       margin: -100px 0 0 -50px;
       padding-left: 50px;
-      padding-right: 20px;
+      padding-right: 25px;
       padding-top: 175px;
       position: absolute;
       transform-origin: 0% 0%;
       transform: translate(-100%, 0);
       transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
       z-index: -1;
-      Link {
-        color: whitesmoke;
+      a {
         text-decoration: none;
         transition: color 0.3s ease;
         font-size: 22px;
         padding: 10px 0;
       }
-      Link:hover {
+      a:hover {
         color: azure;
       }
     }
     input:checked ~ ul {
       transform: none;
+      color: white;
     }
   }
 }
@@ -72,33 +73,36 @@
         cursor: default;
         display: none;
       }
-      .menuIcon1{
+      .menuIcon1 {
         display: none;
       }
-      .menuIcon2{
+      .menuIcon2 {
         display: none;
       }
       span {
         display: none;
       }
       ul {
+        color: white;
         transform: translate(0, 0);
-        background: none;
+        background: #232323;
         flex-direction: row;
-        justify-content: space-around;
-        width: 40%;
+        justify-content: flex-end;
+        width: 100%;
+        height: 5%;
+        top: 0;
         right: 0;
         padding: 0;
         padding-top: 100px;
-        padding-left: 50px;
+        padding-right: 30px;
         position: fixed;
-        Link{
-          padding-right: 10px;
+        a {
+          padding-top: 5px;
         }
       }
       input:checked ~ ul {
-        padding-right: 0;
-        width: 40%;
+        padding-right: 30px;
+        width: 100%;
       }
     }
   }
