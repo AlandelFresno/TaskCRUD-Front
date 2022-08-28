@@ -49,13 +49,16 @@
       top: 0;
       z-index: -1;
       a {
-        font-size: 22px;
+        font-size: 18px;
         padding: 10px 0;
         text-decoration: none;
         transition: color 0.3s ease;
       }
       a:hover {
         color: var(--blue-ryb);
+      }
+      .userName {
+        font-size: 22px;
       }
     }
     input:checked ~ ul {
@@ -96,7 +99,11 @@
         padding-right: 30px;
         position: fixed;
         a {
+          padding-top: 12px;
+        }
+        .userName{
           padding-top: 5px;
+          padding-left: 2rem;
         }
       }
       input:checked ~ ul {
