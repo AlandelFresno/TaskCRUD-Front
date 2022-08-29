@@ -10,10 +10,15 @@ interface Props {
 }
 
 const Table: React.FC<Props> = ({ data, columns }) => {
+
+  console.log(data)
+
   return (
     <div className={styles.gridContainer}>
       <Button variant="contained"> Create new task</Button>
-      {data == [] ? (
+      {data.length == 0 ? (
+        <Typography variant="h5">There are no tasks</Typography>
+      ) : (
         <table>
           <thead>
             <tr>
@@ -32,8 +37,6 @@ const Table: React.FC<Props> = ({ data, columns }) => {
             ))}
           </tbody>
         </table>
-      ) : (
-        <Typography variant="h5">There are no tasks</Typography>
       )}
     </div>
   );

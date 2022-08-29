@@ -90,3 +90,9 @@ export const registerHelper = async (
     });
   }
 };
+
+export const getToken = (state: { token: string }) => {
+  const sessionToken = sessionStorage.getItem('token');
+
+  return state.token || sessionToken;
+};

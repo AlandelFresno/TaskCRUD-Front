@@ -1,27 +1,50 @@
+import { Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
+import fetchAPI from '../../axios/axios';
 import Navbar from '../../components/Navbar/Navbar';
 import Table from '../../components/table/Table';
+import { getToken } from '../../helpers/authHelper';
+import { RootState } from '../../store';
 
 import styles from './styles/Home.module.scss';
 
 const index = () => {
   const columns = ['Title', 'Desciption', 'actions'];
-  const rows = [
-    { id: 1, title: 'Task1', description: 'task one' },
-    { id: 2, title: 'Task2', description: 'task two' },
-    { id: 3, title: 'Task3', description: 'task three' },
-    { id: 4, title: 'Task4', description: 'task four' },
-    { id: 5, title: 'Task5', description: 'task five' },
-    { id: 6, title: 'Task6', description: 'task six' },
-    { id: 7, title: 'Task7', description: 'task seven' },
-    { id: 8, title: 'Task8', description: 'task eight' },
-    { id: 9, title: 'Task8', description: 'task eight' },
-    { id: 10, title: 'Task8', description: 'task eight' },
-  ];
+  const [loading, setLoading] = useState(false);
+  const [rows, setRows] = useState({data: []});
+  const auth = useSelector((state: RootState) => state.auth);
+  
+  useEffect(() => {
+    setLoading(true);
+    const token = getToken(auth);
+    const getTasks = async () => {
+      const data = await fetchAPI({
+        method: 'get',
+        url: '/task',
+        headers: {
+          Authorization:
+            `Bearer ` +
+            token,
+        },
+      });
+      setRows(data)
+    };
+    getTasks();
+    setLoading(false);
+  }, []);
+
+  console.log(rows)
 
   return (
     <div className={styles.homeContainer}>
       <Navbar />
-      <Table data={rows} columns={columns} />
+      {loading ? (
+        <Typography variant="h4"> loading </Typography>
+      ) : (
+        <Table data={rows.data} columns={columns} />
+      )}
     </div>
   );
 };
