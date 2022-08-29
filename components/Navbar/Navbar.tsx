@@ -20,7 +20,7 @@ const Navbar = () => {
   };
 
   const handleLoginClick = () => {
-    console.log(router)
+    console.log(router);
     router.push('/login');
   };
 
@@ -38,11 +38,13 @@ const Navbar = () => {
           <MenuIcon className={styles.menuIcon1} />
         )}
         <ul>
-          <Link href="/home">Home</Link>
           {!token ? (
             <button onClick={handleLoginClick}>Log in</button>
           ) : (
-            <button onClick={handleLogoutClick}>Log out</button>
+            <>
+              <Link href="/home">Home</Link>
+              <button onClick={handleLogoutClick}>Log out</button>
+            </>
           )}
           {user.name ? (
             <Typography variant="body1" className={styles.userName}>
