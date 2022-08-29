@@ -1,28 +1,28 @@
 import { Typography } from '@mui/material';
 import Link from 'next/link';
-import FormComponent from '../../components/form/FormComponent';
+import RegisterForm from '../../components/form/RegisterForm';
 import styles from './styles/Register.module.scss';
 
 const index = () => {
   const inputsArray = [
     {
       label: 'username',
-      name: 'registerUserName',
+      name: 'name',
       type: 'text',
     },
     {
       label: 'Email',
-      name: 'registerEmail',
+      name: 'email',
       type: 'text',
     },
     {
       label: 'Password',
-      name: 'registerPassword',
+      name: 'password',
       type: 'password',
     },
     {
       label: 'Confirm password',
-      name: 'registerConfirmPassword',
+      name: 'confirmPassword',
       type: 'password',
     },
   ];
@@ -30,7 +30,7 @@ const index = () => {
   return (
     <div className={styles.formContainer}>
       <Typography variant="h4"> Register </Typography>
-      <FormComponent inputArray={inputsArray} />
+      <RegisterForm inputArray={inputsArray} />
       <Typography variant="subtitle1" className={styles.registro}>
         Already have an account? <Link href="/login">Log in</Link>
       </Typography>

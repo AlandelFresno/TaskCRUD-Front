@@ -2,47 +2,51 @@ import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import styles from './styles/FormComponent.module.scss';
 import InputField from './InputField/InputField';
+import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
+import { registerHelper } from '../../helpers/authHelper';
 
 interface Props {
-  inputArray: any[];
+  inputArray: any[]
 }
 
-const FormComponent: React.FC<Props> = ({ inputArray: quantity }) => {
+const RegisterForm: React.FC<Props> = ({ inputArray: quantity }) => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+
   const validate = Yup.object({
-    registerUserName: Yup.string()
+    name: Yup.string()
       .required('Username is required')
       .min(3, 'Username must be at least 3 characters'),
-    registerEmail: Yup.string()
-      .required('Email is required')
-      .email('Invalid email'),
-    registerPassword: Yup.string()
+    email: Yup.string().required('Email is required').email('Invalid email'),
+    password: Yup.string()
       .required('Password is required')
       .min(6, 'Password must be at least 6 characters'),
-    registerConfirmPassword: Yup.string()
+    confirmPassword: Yup.string()
       .required('Confirm password is required')
-      .oneOf([Yup.ref('registerPassword'), null], "Passwords don't match"),
-    loginEmail: Yup.string()
-      .required('Email is required')
-      .email('Invalid email'),
-    loginPassword: Yup.string()
-      .required('Password is required')
-      .min(6, 'Password must be at least 6 characters'),
+      .oneOf([Yup.ref('password'), null], "Passwords don't match"),
   });
 
-  const handleSubmit = () => {
-    console.log('click')
+  const handleSubmit = (values: {
+    name: string;
+    email: string;
+    password: string;
+  }) => {
+    registerHelper(dispatch, router, {
+      name: values.name,
+      email: values.email,
+      password: values.password,
+    });
   };
 
   return (
     <Formik
       className={styles.formikContainer}
       initialValues={{
-        loginEmail: '',
-        loginPassword: '',
-        registerUserName: '',
-        registerEmail: '',
-        registerPassword: '',
-        registerConfirmPassword: '',
+        name: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
       }}
       validationSchema={validate}
       onSubmit={handleSubmit}
@@ -52,16 +56,16 @@ const FormComponent: React.FC<Props> = ({ inputArray: quantity }) => {
           {quantity.map((elements, index) => (
             <InputField
               key={index}
-              label={elements.label}
+              placeholder={elements.label}
               name={elements.name}
               type={elements.type}
             />
           ))}
-          <button type="submit"> Log in </button>
+          <button type="submit"> Register </button>
         </Form>
       )}
     </Formik>
   );
 };
 
-export default FormComponent;
+export default RegisterForm;

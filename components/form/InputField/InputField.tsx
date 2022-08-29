@@ -3,26 +3,18 @@ import React from 'react';
 
 import styles from './styles/InputField.module.scss';
 
-interface Props {
-  label: string;
-  name: string;
-  type: string;
-}
-
-const InputField: React.FC<Props> = ({label, name, type}) => {
+const InputField = (props: FieldHookConfig<string>) => {
+  const [field] = useField(props);
 
   return (
     <div>
       <input
         className={''}
-        placeholder={label}
-        type={type}
+        placeholder={props.placeholder}
+        type={props.type}
+        {...field}
       />
-      <ErrorMessage
-        component="p"
-        name={name}
-        className={styles.errors}
-      />
+      <ErrorMessage component="p" name={props.name} className={styles.errors} />
     </div>
   );
 };
