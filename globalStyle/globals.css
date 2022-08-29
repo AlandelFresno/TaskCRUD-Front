@@ -1,5 +1,5 @@
 :root {
-  --roboto: "Roboto","Helvetica","Arial",sans-serif;
+  --roboto: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   --rich-black-fogra-39: #070707ff;
   --oxford-blue: #001e32ff;
   --oxford-blue-2: #05234bff;
@@ -29,3 +29,22 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+.swal2-popup{
+  background-color:var(--oxford-blue) !important;
+  color: white !important;
+}
+.swal2-title {
+  font-family: var(--roboto);
+}
+.swal2-confirm {
+  background-color: var(--blue-ryb) !important;
+}
+.swal2-confirm:hover {
+  background-color: var(--ua-blue) !important;
+}
+.swal2-timer-progress-bar-container{
+  /* color: white !important; */
+  background-color: white;
+}
+

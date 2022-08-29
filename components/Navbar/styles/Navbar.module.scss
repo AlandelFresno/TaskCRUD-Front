@@ -58,6 +58,7 @@
         color: whitesmoke;
       }
       a {
+        font-family: var(--roboto);
         font-size: 18px;
         padding: 10px 0;
         text-decoration: none;
@@ -112,12 +113,12 @@
         }
         button:hover {
           cursor: pointer;
-          background-color: var(--ua-blue) ;
+          background-color: var(--ua-blue);
         }
         a {
           padding-top: 12px;
         }
-        .userName{
+        .userName {
           // padding-top: 5px;
           padding-left: 2rem;
         }

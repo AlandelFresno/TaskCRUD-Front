@@ -29,6 +29,8 @@ export const loginHelper = async (
       toast: true,
       timer: 3000,
       timerProgressBar: true,
+      position: 'top-end',
+      buttonsStyling: true,
     });
   } catch (error: any) {
     console.log(error);
@@ -72,11 +74,12 @@ export const registerHelper = async (
     dispatch(saveToken(data.token));
     router.push('/home');
     Swal.fire({
-      title: 'Logged succesfully',
+      title: 'Successful registration',
       icon: 'success',
       toast: true,
       timer: 3000,
       timerProgressBar: true,
+      position: 'top-end',
     });
   } catch (error: any) {
     console.log(error);
