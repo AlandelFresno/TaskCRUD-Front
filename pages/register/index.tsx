@@ -6,7 +6,7 @@ import styles from './styles/Register.module.scss';
 const index = () => {
   const inputsArray = [
     {
-      label: 'username',
+      label: 'Username',
       name: 'name',
       type: 'text',
     },

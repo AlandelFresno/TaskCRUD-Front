@@ -17,7 +17,7 @@ const Home: NextPage = () => {
           <Typography variant="h2">Welcome</Typography>
           <Typography variant="h4">to Trackmania</Typography>
           <Typography variant="subtitle1">
-            a place where you can track yours tasks, please log in or create a
+            A place where you can track your tasks, please log in or create a
             new account
           </Typography>
           <Typography variant="subtitle1"></Typography>
