@@ -29,11 +29,12 @@ export const loginHelper = async (
       toast: true,
       timer: 3000,
       timerProgressBar: true,
-      position: 'top-end',
+      position: 'top-start',
       buttonsStyling: true,
     });
   } catch (error: any) {
     console.log(error);
+  
     Swal.fire({
       title: error.response.data.msg,
       icon: 'error',
@@ -79,7 +80,7 @@ export const registerHelper = async (
       toast: true,
       timer: 3000,
       timerProgressBar: true,
-      position: 'top-end',
+      position: 'top-start',
     });
   } catch (error: any) {
     console.log(error);
@@ -91,8 +92,10 @@ export const registerHelper = async (
   }
 };
 
-export const getToken = (state: { token: string }) => {
+export const getToken = () => {
   const sessionToken = sessionStorage.getItem('token');
-
-  return state.token || sessionToken;
+  if (sessionToken === null) {
+    return '';
+  }
+  return sessionToken;
 };

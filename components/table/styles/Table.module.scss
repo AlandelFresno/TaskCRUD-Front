@@ -11,6 +11,7 @@
   }
   table {
     border-collapse: collapse;
+
     max-width: 80%;
     margin: 1rem auto;
     th,
@@ -19,13 +20,18 @@
         transform: scale(0.8);
       }
       border: 1px solid white;
-      border-radius: 5px;
       padding: 8px;
     }
     td {
       overflow: hidden;
       text-overflow: ellipsis;
       height: 28px;
+    }
+    .completed {
+      text-decoration: line-through;
+    }
+    .notCompleted {
+      text-decoration: none;
     }
   }
   h5 {
@@ -41,7 +47,7 @@
     table {
       width: 100%;
     }
-    .actions {
+    .actionsContainer {
       display: flex;
       justify-content: center;
     }

@@ -1,17 +1,18 @@
 import { Button, Typography } from '@mui/material';
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 import styles from './styles/Table.module.scss';
 import TableHeadItem from './tableHeadIteam/TableHeadItem';
 import TableRow from './tableRow/TableRow';
 
 interface Props {
-  data: any[];
   columns: any[];
 }
 
-const Table: React.FC<Props> = ({ data, columns }) => {
-
-  console.log(data)
+const Table: React.FC<Props> = ({ columns }) => {
+  const task = useSelector((state: RootState) => state.task);
+  const data = task.tasks;
 
   return (
     <div className={styles.gridContainer}>
@@ -33,6 +34,9 @@ const Table: React.FC<Props> = ({ data, columns }) => {
                 key={index}
                 title={item.title}
                 description={item.description}
+                taskId={item.id}
+                done={item.done}
+                index={index}
               />
             ))}
           </tbody>
