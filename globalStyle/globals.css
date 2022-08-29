@@ -11,6 +11,7 @@
 }
 html,
 body {
+  font-family: var(--roboto);
   color: whitesmoke;
   height: 100%;
   margin: 0;
@@ -34,9 +35,6 @@ a {
   background-color:var(--oxford-blue) !important;
   color: white !important;
 }
-.swal2-title {
-  font-family: var(--roboto);
-}
 .swal2-confirm {
   background-color: var(--blue-ryb) !important;
 }
@@ -44,7 +42,6 @@ a {
   background-color: var(--ua-blue) !important;
 }
 .swal2-timer-progress-bar-container{
-  /* color: white !important; */
   background-color: white;
 }
 
