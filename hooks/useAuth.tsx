@@ -77,12 +77,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     setInitialLoading(false);
   }, []);
 
-  if (response)
-    return (
-      <AuthContext.Provider value={{ user, loading, token, error }}>
-        {!initialLoading && children}
-      </AuthContext.Provider>
-    );
+  return (
+    <AuthContext.Provider value={{ user, loading, token, error }}>
+      {!initialLoading && children}
+    </AuthContext.Provider>
+  );
 };
 
 const useAuth = () => {
