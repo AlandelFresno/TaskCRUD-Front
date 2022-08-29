@@ -20,58 +20,59 @@ export const editTask = async (
 ) => {
   console.log(task);
 
-  const { value: formValues } = await Swal.fire({
+  await Swal.fire({
     title: 'Multiple inputs',
     html:
       `<input value='${task.title}' id="swal-input1" class="swal2-input">` +
       `<input value='${task.description}' id="swal-input2" class="swal2-input">`,
     focusConfirm: false,
     toast: true,
+    showCancelButton: true,
     preConfirm: () => {
       return [
         (<HTMLInputElement>document.getElementById('swal-input1')).value,
         (<HTMLInputElement>document.getElementById('swal-input2')).value,
       ];
     },
+  }).then(async (value) => {
+    const {value: valueData} = value
+    if (value.isConfirmed) {
+      try {
+        await fetchAPI({
+          method: 'put',
+          url: `/task/${task.id}`,
+          headers: { Authorization: `Bearer ${token}` },
+          data: {
+            title: valueData ? valueData[0] : task.title,
+            description: valueData ? valueData[1] : task.description,
+          },
+        });
+        Swal.fire({
+          title: 'Edited succesfully',
+          icon: 'success',
+          toast: true,
+          buttonsStyling: true,
+        }).then(() => {
+          dispatch(editOneTask({ index, valueData }));
+        });
+      } catch (error) {
+        Swal.fire({
+          title: 'Error while editing',
+          icon: 'error',
+          toast: true,
+          timer: 3000,
+          timerProgressBar: true,
+          buttonsStyling: true,
+        });
+      }
+    }
   });
-  try {
-    await fetchAPI({
-      method: 'put',
-      url: `/task/${task.id}`,
-      headers: { Authorization: `Bearer ${token}` },
-      data: {
-        title: formValues ? formValues[0] : task.title,
-        description: formValues ? formValues[1] : task.description,
-      },
-    });
-    Swal.fire({
-      title: 'Edited succesfully',
-      icon: 'success',
-      toast: true,
-      timer: 3000,
-      timerProgressBar: true,
-      position: 'top-start',
-      buttonsStyling: true,
-    }).then(() => {
-      dispatch(editOneTask({index, formValues}))
-    });
-  } catch (error) {
-    Swal.fire({
-      title: 'Error while editing',
-      icon: 'error',
-      toast: true,
-      timer: 3000,
-      timerProgressBar: true,
-      buttonsStyling: true,
-    });
-  }
 };
 
 export const deleteTask = async (
   dispatch: Function,
   token: string,
-  taskId: number,
-  index: number
+  taskId: number
 ) => {
   Swal.fire({
     title: 'Are you sure?',
@@ -98,7 +99,7 @@ export const deleteTask = async (
           position: 'top-start',
           buttonsStyling: true,
         }).then(() => {
-          dispatch(removeOneTask({index}))
+          dispatch(removeOneTask({taskId}));
         });
       } catch (error) {
         Swal.fire({

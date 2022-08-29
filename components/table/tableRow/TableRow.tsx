@@ -3,9 +3,10 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import styles from '../styles/Table.module.scss';
 import { deleteTask, editTask } from '../../../helpers/taskHelper';
-import { useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getToken } from '../../../helpers/authHelper';
-import { RootState } from '../../../store';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
 interface Props {
   title: string;
@@ -15,28 +16,27 @@ interface Props {
   index: number;
 }
 
-const TableRow: React.FC<Props> = ({ title, description, taskId, done, index }) => {
+const TableRow: React.FC<Props> = ({
+  title,
+  description,
+  taskId,
+  done,
+  index,
+}) => {
   const [isDone, setIsDone] = useState(done);
   const dispatch = useDispatch();
-  const userToken= getToken();
+  const userToken = getToken();
 
   const handleEdit = () => {
     const task = { title, description, id: taskId };
     editTask(dispatch, task, userToken, index);
   };
   const handleDelete = () => {
-    deleteTask(dispatch, userToken, taskId, index);
+    deleteTask(dispatch, userToken, taskId);
   };
 
   const handleInputClick = () => {
-    const checkbox = document.getElementById(
-      `${taskId}`
-    ) as HTMLInputElement | null;
-    if (checkbox == null) {
-      setIsDone(isDone);
-    } else {
-      setIsDone(checkbox?.checked);
-    }
+    setIsDone(!isDone);
   };
 
   return (
@@ -50,7 +50,7 @@ const TableRow: React.FC<Props> = ({ title, description, taskId, done, index }) 
       <td className={styles.actionsContainer}>
         <EditIcon className={styles.actions} onClick={handleEdit} />
         <DeleteIcon className={styles.actions} onClick={handleDelete} />
-        <input type="checkbox" id={`${taskId}`} onClick={handleInputClick} />
+        {isDone ? <CheckBoxIcon  className={styles.actions} onClick={handleInputClick}/> : <CheckBoxOutlineBlankIcon className={styles.actions} onClick={handleInputClick}/>}
       </td>
     </tr>
   );

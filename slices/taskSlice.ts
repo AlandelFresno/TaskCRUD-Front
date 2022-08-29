@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 export interface AuthState {
@@ -20,13 +20,20 @@ export const taskSlice = createSlice({
       const { payload } = action;
       state.tasks[payload.index] = {
         ...state.tasks[payload.index],
-        title: payload.formValues[0],
-        description: payload.formValues[1],
+        title: payload.valueData[0],
+        description: payload.valueData[1],
       };
     },
     removeOneTask: (state, action) => {
       const { payload } = action;
-      state.tasks = state.tasks.splice(payload.index, 1);
+      const allArrays = current(state.tasks);
+      const arr = [...allArrays];
+      const filteredArray = arr.filter((task) => {
+        if (task.id !== payload.taskId) {
+          return task;
+        }
+      });
+      state.tasks = filteredArray
     },
   },
 });
