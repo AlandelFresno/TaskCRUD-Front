@@ -6,8 +6,10 @@ const Custom404 = () => {
   return (
     <div className={styles.main}>
       <Navbar />
-      <Typography variant="h2">404</Typography>
-      <Typography variant="subtitle1">Page not found</Typography>
+      <div className={styles.titlesContainer}>
+        <Typography variant="h2">404</Typography>
+        <Typography variant="subtitle1">Page not found</Typography>
+      </div>
     </div>
   );
 };
