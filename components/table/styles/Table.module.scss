@@ -3,7 +3,7 @@
   flex-direction: column;
   width: 80%;
   padding-left: 2rem;
-  button{
+  button {
     margin: 1rem auto;
     width: 10rem;
     text-transform: none;
@@ -28,15 +28,20 @@
       height: 28px;
     }
   }
+  h5 {
+    display: flex;
+    justify-content: center;
+    padding-top: 3rem;
+  }
 }
 @media (min-width: 426px) {
   .gridContainer {
     width: 100%;
     padding: 0;
-    table{
+    table {
       width: 100%;
     }
-    .actions{
+    .actions {
       display: flex;
       justify-content: center;
     }

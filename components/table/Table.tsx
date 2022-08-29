@@ -1,4 +1,4 @@
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import React from 'react';
 import styles from './styles/Table.module.scss';
 import TableHeadItem from './tableHeadIteam/TableHeadItem';
@@ -9,26 +9,34 @@ interface Props {
   columns: any[];
 }
 
-const Table: React.FC<Props>  = ({ data, columns }) => {
+const Table: React.FC<Props> = ({ data, columns }) => {
   return (
     <div className={styles.gridContainer}>
-      <Button variant='contained'> Create new task</Button>
-      <table>
-        <thead>
-          <tr>
-            {columns.map((item, index) => (
-              <TableHeadItem key={index} item={item} />
+      <Button variant="contained"> Create new task</Button>
+      {data == [] ? (
+        <table>
+          <thead>
+            <tr>
+              {columns.map((item, index) => (
+                <TableHeadItem key={index} item={item} />
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((item, index) => (
+              <TableRow
+                key={index}
+                title={item.title}
+                description={item.description}
+              />
             ))}
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((item, index) => <TableRow key={index} title={item.title} description={item.description} />)}
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      ) : (
+        <Typography variant="h5">There are no tasks</Typography>
+      )}
     </div>
   );
 };
-
-
 
 export default Table;
