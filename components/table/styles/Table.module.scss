@@ -1,0 +1,58 @@
+.gridContainer {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  padding-left: 2rem;
+  button {
+    margin: 1rem auto;
+    width: 10rem;
+    text-transform: none;
+    background-color: var(--blue-ryb);
+  }
+  table {
+    border-collapse: collapse;
+
+    max-width: 80%;
+    margin: 1rem auto;
+    th,
+    td {
+      svg {
+        transform: scale(0.8);
+      }
+      border: 1px solid white;
+      padding: 8px;
+    }
+    td {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      height: 28px;
+    }
+    .actions {
+      cursor: pointer;
+    }
+    .completed {
+      text-decoration: line-through;
+    }
+    .notCompleted {
+      text-decoration: none;
+    }
+  }
+  h5 {
+    display: flex;
+    justify-content: center;
+    padding-top: 3rem;
+  }
+}
+@media (min-width: 426px) {
+  .gridContainer {
+    width: 100%;
+    padding: 0;
+    table {
+      width: 100%;
+    }
+    .actionsContainer {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
