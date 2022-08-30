@@ -1,16 +1,77 @@
 import Swal from 'sweetalert2';
 import fetchAPI from '../axios/axios';
-import { editOneTask, removeOneTask } from '../slices/taskSlice';
+import { addOneTask, editOneTask, removeOneTask } from '../slices/taskSlice';
 
-// fetchAPI options
-// {
-//   method: 'post',
-//   url: '/auth/login',
-//   data: {
-//     email: userData.email,
-//     password: userData.password,
-//   },
-// }
+export const createTask = async (dispatch: Function, token: string) => {
+  await Swal.fire({
+    title: 'Create task',
+    html:
+      `<input value='' id="swal-input1" class="swal2-input">` +
+      `<input value='' id="swal-input2" class="swal2-input">`,
+    focusConfirm: false,
+    toast: true,
+    showCancelButton: true,
+    preConfirm: () => {
+      return [
+        (<HTMLInputElement>document.getElementById('swal-input1')).value,
+        (<HTMLInputElement>document.getElementById('swal-input2')).value,
+      ];
+    },
+  }).then(async (value) => {
+    const { value: valueData } = value;
+    if (value.isConfirmed) {
+      if (valueData === undefined) {
+        Swal.fire({
+          title: 'An error ocurred',
+          icon: 'error',
+          toast: true,
+        });
+      } else {
+        if (valueData[0] === '') {
+          Swal.fire({
+            title: 'The task must have a title',
+            icon: 'error',
+            toast: true,
+          });
+        } else {
+          try {
+            await fetchAPI({
+              method: 'post',
+              url: `/task`,
+              headers: { Authorization: `Bearer ${token}` },
+              data: {
+                title: valueData[0],
+                description: valueData[1],
+              },
+            });
+            Swal.fire({
+              title: 'Task Created',
+              icon: 'success',
+              toast: true,
+              buttonsStyling: true,
+            }).then(() => {
+              dispatch(
+                addOneTask({
+                  task: { title: valueData[0], description: valueData[1] },
+                })
+              );
+            });
+          } catch (error) {
+            console.log(error);
+            Swal.fire({
+              title: 'Error while editing',
+              icon: 'error',
+              toast: true,
+              timer: 3000,
+              timerProgressBar: true,
+              buttonsStyling: true,
+            });
+          }
+        }
+      }
+    }
+  });
+};
 
 export const editTask = async (
   dispatch: Function,
@@ -21,7 +82,7 @@ export const editTask = async (
   console.log(task);
 
   await Swal.fire({
-    title: 'Multiple inputs',
+    title: 'Edit task',
     html:
       `<input value='${task.title}' id="swal-input1" class="swal2-input">` +
       `<input value='${task.description}' id="swal-input2" class="swal2-input">`,
@@ -35,7 +96,7 @@ export const editTask = async (
       ];
     },
   }).then(async (value) => {
-    const {value: valueData} = value
+    const { value: valueData } = value;
     if (value.isConfirmed) {
       try {
         await fetchAPI({
@@ -94,12 +155,9 @@ export const deleteTask = async (
           title: 'Deleted succesfully',
           icon: 'success',
           toast: true,
-          timer: 3000,
-          timerProgressBar: true,
-          position: 'top-start',
           buttonsStyling: true,
         }).then(() => {
-          dispatch(removeOneTask({taskId}));
+          dispatch(removeOneTask({ taskId }));
         });
       } catch (error) {
         Swal.fire({

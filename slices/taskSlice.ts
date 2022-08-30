@@ -33,10 +33,20 @@ export const taskSlice = createSlice({
           return task;
         }
       });
-      state.tasks = filteredArray
+      state.tasks = filteredArray;
+    },
+    addOneTask: (
+      state,
+      action: { payload: { task: { title: string; description: string } } }
+    ) => {
+      const { payload } = action;
+      const oldArray = current(state.tasks);
+      const newArray = oldArray.concat(payload.task);
+      state.tasks = newArray;
     },
   },
 });
 export default taskSlice.reducer;
 
-export const { saveAllTasks, editOneTask, removeOneTask } = taskSlice.actions;
+export const { saveAllTasks, editOneTask, removeOneTask, addOneTask } =
+  taskSlice.actions;
