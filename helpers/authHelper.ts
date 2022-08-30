@@ -7,7 +7,6 @@ export const loginHelper = async (
   userData: { email: string; password: string },
   router: { push: Function }
 ) => {
-  console.log(userData);
   try {
     const { data } = await fetchAPI({
       method: 'post',

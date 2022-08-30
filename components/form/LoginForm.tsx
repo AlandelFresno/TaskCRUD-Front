@@ -45,7 +45,7 @@ const LoginForm: React.FC<Props> = ({ inputArray: quantity }) => {
               type={elements.type}
             />
           ))}
-          <button type="submit"> Log in </button>
+          <button id='loginButton' type="submit"> Log in </button>
         </Form>
       )}
     </Formik>
