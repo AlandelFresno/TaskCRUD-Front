@@ -139,6 +139,7 @@ export const deleteTask = async (
     title: 'Are you sure?',
     text: 'You will not be able to undo this action',
     icon: 'warning',
+    iconColor: '#cc0000',
     showCancelButton: true,
     toast: true,
     confirmButtonText: 'Yes, delete it!',
@@ -171,4 +172,37 @@ export const deleteTask = async (
       }
     }
   });
+};
+
+export const taskIsDone = (
+  dispatch: Function,
+  isDone: boolean,
+  token: string,
+  taskId: number
+) => {
+  let isDoneString = '';
+  if (isDone) {
+    isDoneString = 'true';
+  } else {
+    isDoneString = 'false';
+  }
+  try {
+    fetchAPI({
+      method: 'put',
+      url: `/task/${taskId}`,
+      headers: { Authorization: `Bearer ${token}` },
+      data: {
+        done: isDoneString,
+      },
+    });
+  } catch (error) {
+    Swal.fire({
+      title: 'An error occurred while chenging the status',
+      icon: 'error',
+      toast: true,
+      timer: 3000,
+      timerProgressBar: true,
+      buttonsStyling: true,
+    });
+  }
 };
