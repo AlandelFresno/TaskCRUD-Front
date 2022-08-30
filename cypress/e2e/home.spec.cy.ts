@@ -11,3 +11,5 @@ context('Test homepage Title', () => {
     cy.get('h2').contains('Welcome');
   });
 });
+
+export {};

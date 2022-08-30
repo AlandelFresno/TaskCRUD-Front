@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
+const baseUrl = 'http://localhost:3001';
 context('Test Login', () => {
-  const baseUrl = 'http://localhost:3001';
   beforeEach(() => {
     cy.visit(`${baseUrl}/login`);
     sessionStorage.removeItem('token');
@@ -10,7 +10,7 @@ context('Test Login', () => {
   it('should have inputs with attributes ', () => {
     cy.get('input[name=email]')
       .invoke('attr', 'placeholder')
-      .should('contain', 'Email'); 
+      .should('contain', 'Email');
     cy.get('input[name=email]')
       .invoke('attr', 'type')
       .should('contain', 'text');
@@ -44,3 +44,5 @@ context('Test Login', () => {
     cy.get('h2[id=swal2-title]').contains('Logged succesfully');
   });
 });
+
+export {};
